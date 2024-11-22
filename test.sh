@@ -106,3 +106,49 @@ echo ""
 echo "###################################"
 echo "        End of Reference          "
 echo "###################################"
+
+#!/bin/bash
+
+# Function to simulate an error
+simulate_error() {
+    echo "Simulating an error..."
+    return 1  # Returning a non-zero exit status to simulate an error
+}
+
+# Trap for catching errors
+trap 'echo "An error occurred. Exiting."; exit 1;' ERR
+
+# If statement example
+echo "If Statement Example:"
+number=10
+if [ $number -eq 10 ]; then
+    echo "The number is equal to 10."
+else
+    echo "The number is not equal to 10."
+fi
+echo ""
+
+# For loop example
+echo "For Loop Example:"
+for i in {1..5}; do
+    echo "Iteration $i"
+done
+echo ""
+
+# While loop example
+echo "While Loop Example:"
+count=1
+while [ $count -le 5 ]; do
+    echo "Count is $count"
+    ((count++))  # Increment count
+done
+echo ""
+
+# Function call to demonstrate error handling
+echo "Error Handling Example:"
+simulate_error  # This will trigger the error handling in the trap
+
+# Note: The above line will exit the script if simulate_error returns a non-zero status
+
+# To show that the script continues normally, we can add a final message
+echo "This message will not be displayed due to the error earlier."
